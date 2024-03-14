@@ -145,19 +145,44 @@
 }
 
 %---------------------------------------------------------
-\newcommand{\barrule}[3]{\hspace{0.5em}
-  {\color{#3}\rule[\baselineskip]{#1\textwidth}{#2}}\vspace{0.5em}
+% \newcommand{\barrule}[3]{
+%   \hspace{0.5em}
+%   {\color{#3} \rule[\baselineskip] {#1\textwidth} {#2}}
+%   \vspace{0.5em}
+% }
+
+\newcommand{\barrule}[3]{
+  \begin{tikzpicture}[baseline={(0,0.15)},x={#2\textwidth}]
+    % Draw the background bar
+    \fill[#3!30] (0,0) rectangle (1,0.5); % Use 1 as the width because x=\textwidth
+
+    % Draw the filled bar up to the skill level
+    \fill[#3] (0,0) rectangle (#1,0.5); % #1 now directly relates to the fraction of \textwidth
+
+    % Draw notches based on relative positions
+    \draw[thick] (0.25,0) -- ++(0,0.5); % Beginner
+    \draw[thick] (0.5,0) -- ++(0,0.5); % Intermediate
+    \draw[thick] (0.75,0) -- ++(0,0.5); % Proficient
+    \draw[thick] (1,0) -- ++(0,0.5); % Expert
+
+    % Add transparent text between the notches
+    \node[opacity=0.5] at (0.125, 0.25) {\scriptsize Beginner};
+    \node[opacity=0.5] at (0.375, 0.25) {\scriptsize Intermed.};
+    \node[opacity=0.5] at (0.625, 0.25) {\scriptsize Proficient};
+    \node[opacity=0.5] at (0.875, 0.25) {\scriptsize Expert};
+  \end{tikzpicture}
 }
 
-\newcommand{\cvevent}[5]{
+
+
+\newcommand{\cvevent}[6]{
   % Time Frame
   {#1} &
 
-  % Degree, Institution, and Location Block
-  \begin{minipage}[t]{0.5\textwidth} % Use minipage for better control over spacing and alignment
+  \begin{minipage}[t]{0.5\textwidth}
     \textbf{#2}  \\ % Title in bold
-    \textsc{#3} • {\textsc{#4} \color{cvred} ~\faMapMarker} \\
-    {\color{black!70}\footnotesize #5} % Description in smaller, lighter text
+    \textsc{#3} • {\color{linkcolor} \underline{#4} \faGlobe} \\
+    {\color{black!70}\footnotesize #6} % Description in smaller, lighter text
     \vspace{1em}
   \end{minipage}
 }
@@ -193,7 +218,7 @@
     \begin{tikzpicture}
       \draw[draw=#2,fill=#2] (0,0) circle (0.21cm);
       \node[anchor=center] at (0,0) {\color{#3}\textnormal{#1}};
-      \node[right=1em, align=left, text width=4cm] at (0,0) {\href{#5}{\underline{#4}}};
+      \node[right=1em, align=left, text width=4cm] at (0,0) {\href{#5}{\color{linkcolor} \underline{#4}}};
     \end{tikzpicture}
   }
 }

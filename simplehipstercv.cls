@@ -23,12 +23,12 @@
 % ---------------------------------------------------------------------------
 \DeclareOption{pastel}{
     % Colors
-    \definecolor{headerblue}{HTML}{6978B6}%
+    \definecolor{linkcolor}{HTML}{8E4585}
     \definecolor{cvorange}{HTML}{FFC300}
     \definecolor{cvpurple}{HTML}{B66978}
     \definecolor{cvred}{HTML}{B66978}
     \definecolor{cvgreen}{HTML}{78B669}
-    \definecolor{timelinecolour}{HTML}{414B96} %#660022
+    \definecolor{timelinecolour}{HTML}{414B96}
     \definecolor{jackbeige}{RGB}{226,212,186}
     \definecolor{labelcolour}{HTML}{000000}
     \definecolor{iconcolour}{HTML}{000000}
